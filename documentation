@@ -1,0 +1,36 @@
+Ok, donc déjà, on part sur un jeu de survie assez classique.
+
+
+Location du jeu : un centre ville avec des immeubles relativement haut
+
+Ennemie principale : un nuage de brume
+
+
+Est ce que je fais un nuage qui se lève le soir et ce couche le matin ? 
+--> idée simpa sauf que ca réduit l'importante d'un cycle jours nuit. 
+
+Il faut que la survie soit compliqué:
+=> systeme de santé sur le personnage complexe
+	-> fracture
+	-> saignement
+	-> infection
+	-> maladie
+	-> chaud / froid
+
+Gestion d'une barre de soif, de nourriture
+
+Mais quel objectifs donnée au joueurs aprés qu'il est crée une jolie base, qu'ils soit bien équipé, et qu'il est assuré sa survie ? 
+Cela va faire le même problème qu'avec Project Zomboid ... plus trop d'objectifs ...
+
+
+Evenement possible : une caravane de marchant 
+	->Attaque de la caravane
+	->Commerce avec celle si
+
+
+L'objectifs du nuage et de forcé les joueurs a crée des bases et de s'installer en hauteur, sur les derniers étages des immeubles.
+
+
+
+Quelle architecture pour mon jeu vidéo ?
+
