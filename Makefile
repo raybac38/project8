@@ -13,17 +13,18 @@ INCLUDE_DIR=./include/
 BIN_DIR=./bin/
 
 
-SRC= $(wildcard $(SRC_DIR)*.c)
-OBJ= $(patsubst $(SRC_DIR)%.c, $(BIN_DIR)%.o, $(SRC)) 
+SRC= $(shell find $(SRC_DIR) -name "*.c")
+OBJ= $(patsubst $(SRC_DIR)%.c, $(BIN_DIR)%.o, $(SRC))
 
 EXEC=main
 
 all: init_bin $(EXEC)
 
-$(EXEC):$(OBJ)
+$(EXEC): $(OBJ)
 	gcc -o $(EXEC) $^ $(RAYLIB) $(LFLAGS)
 
 $(BIN_DIR)%.o:$(SRC_DIR)%.c
+	mkdir -p $(dir $@)
 	gcc $(CFLAGS) -c -o $@ $^ -I $(INCLUDE_DIR) -I $(RAYLIB_LIB)
 
 init_bin:
@@ -33,3 +34,7 @@ clean:
 	-@ rm -r $(BIN_DIR)
 	-@ rm $(EXEC)
 	-@ echo "Cleanup"
+
+print:
+	-@echo $(OBJ)
+	-@echo $(SRC)

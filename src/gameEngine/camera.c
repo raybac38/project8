@@ -10,5 +10,4 @@ Camera InitCamera()
     camera.projection = CAMERA_PERSPECTIVE;
 
     return camera;
-
 }

@@ -28,11 +28,8 @@ void list_append(function f)
     *(last_task)++ = f;
 }
 
-///
-
 void EventManagerAddTask(void (* f)(void))
 {
-    printf("Function added\n");
     if(number_of_task > QUEUE_SIZE)
     {
         //Overflow
@@ -51,6 +48,7 @@ void EventManagerAddExitTask(void (* f)(void))
         exit(EXIT_FAILURE);
     }
     *(last_exit_queue)++ = (function)f;
+    number_of_exit_task++;
 }
 
 void EventManagerRuntime()
@@ -79,6 +77,12 @@ void EventManagerInit()
 
 void EventManagerExit()
 {
+    function * f = EXIT_QUEUE;
+    while(number_of_exit_task--)
+    {
+        (*f)();
+        f++;
+    }
     runtime = false;
     free(QUEUE);
     free(EXIT_QUEUE);
