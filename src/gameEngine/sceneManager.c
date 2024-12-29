@@ -1,17 +1,24 @@
 #include <stdio.h>
 #include <raylib.h>
-#include "./gameEngine/scene.h"
-#include "./gameEngine/eventManager.h"
-#include "./gameEngine/camera.h"
+#include "gameEngine/sceneManager.h"
+#include "gameEngine/gameObject.h"
+#include "gameEngine/eventManager.h"
+#include "gameEngine/camera.h"
 
-Camera camera;
+static Scene current_scene;
+static Camera camera;
+
+void SceneManagerSetScene(Scene scene)
+{
+    current_scene = scene;
+}
 
 void SceneManagerUpdate()
 {
     BeginDrawing();
-	ClearBackground(RAYWHITE);
+	ClearBackground(DARKGRAY);
 	BeginMode3D(camera);
-		DrawScene();
+        SceneDrawGameObjects(current_scene);
 	EndMode3D();
 	EndDrawing();
 	EventManagerAddTask(SceneManagerUpdate);
@@ -25,8 +32,10 @@ void SceneManagerExit(void)
 
 void SceneManagerInit(void)
 {
-    EventManagerAddTask(SceneManagerUpdate);
-    EventManagerAddExitTask(SceneManagerExit);
+    current_scene = SceneInit();
     camera = InitCamera();
     SetTargetFPS(60);
+
+    EventManagerAddTask(SceneManagerUpdate);
+    EventManagerAddExitTask(SceneManagerExit);
 }

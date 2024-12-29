@@ -1,5 +1,6 @@
 #include "./gameEngine/eventManager.h"
 #include "./gameEngine/sceneManager.h"
+#include "core/core.h"
 #include <raylib.h>
 #include <stdio.h>
 
@@ -22,11 +23,11 @@ int main(int argc, char ** argv)
 {
 	InitWindow(WINDOWS_WIDTH, WINDOWS_HEIGHT, WINDOWS_TITLE);
 
-
 	EventManagerInit();
 	SceneManagerInit();
 
 	EventManagerAddTask(CheckExit);
+	EventManagerAddTask(CoreInit);
 
 	EventManagerRuntime();
 
